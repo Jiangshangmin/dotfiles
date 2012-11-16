@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="zhann"
 
 # Example aliases
 alias zshconfig="vi ~/.zshrc"
@@ -29,14 +29,17 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby python lighthouse github)
+plugins=(git ruby python lighthouse github django sublime)
 
 source $ZSH/oh-my-zsh.sh
+
 unsetopt correct_all
 
 # Customize to your needs...
-export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/tan/.rvm/gems/ruby-1.9.3-p0/bin:/Users/tan/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/tan/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/tan/.rvm/bin:/opt/subversion/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/X11/bin:/Users/tan/dev/grails/bin:/Users/tan/dev/groovy/bin:/Users/tan/dev/gradle/bin:/usr/share/scala/bin
+export PYTHON_HOME=/Library/Frameworks/Python.framework/Versions/Current/
+export PATH=$PYTHON_HOME/bin:/Users/tan/.rvm/gems/ruby-1.9.3-p0/bin:/Users/tan/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/tan/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/tan/.rvm/bin:/opt/subversion/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/X11/bin:/Users/tan/dev/grails/bin:/Users/tan/dev/groovy/bin:/Users/tan/dev/gradle/bin:/usr/share/scala/bin
 
-export VIRTUALENV_HOME=~/.envs/
+export WORKON_HOME=~/.virtualenvs/
+source $PYTHON_HOME/bin/virtualenvwrapper.sh 
 
-
+alias activate='workon'

@@ -123,4 +123,6 @@ imap jj <Esc>
 
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
-
+map <leader>tn :tabnext<cr>
+map <leader>tb :tabprev<cr>
+map <leader>tc :tabclose<cr>
