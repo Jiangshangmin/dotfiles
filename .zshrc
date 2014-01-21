@@ -10,7 +10,7 @@ ZSH_THEME="gallois"
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias work="cd ~/projects/ && vagrant up && vagrant ssh"
+alias vag="vagrant"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -46,7 +46,7 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git ruby python lighthouse github mvn rvm django)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -67,3 +67,18 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# Customize to your needs...
+# export ANDROID_SDK_HOME=/Users/tquach/Development/adt-bundle-mac-x86_64-20130219/sdk
+# export PATH=$PATH:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools:/usr/local/pgsql/bin
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Development
+source /usr/local/bin/virtualenvwrapper.sh
+
+# LD_LIBRARY_PATH=/usr/local/pgsql/lib
+# export LD_LIBRARY_PATH
+
+bindkey -e
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
