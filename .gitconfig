@@ -1,6 +1,8 @@
 [user]
 	name = Tan Quach
 	email = tan.quach@gmail.com
+[push]
+	default = simple
 [core]
 	excludesfile = /Users/tquach/.gitignore_global
 [difftool "sourcetree"]
