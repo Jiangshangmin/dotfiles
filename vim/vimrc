@@ -67,8 +67,7 @@ Plugin 'gmarik/vundle'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'benjaminwhite/Benokai'
-" Plugin 'fsouza/go.vim'
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 Plugin 'fatih/molokai'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'wting/rust.vim'
@@ -78,7 +77,19 @@ Plugin 'mtth/scratch.vim'
 Plugin 'greplace.vim'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
+Bundle 'Blackrush/vim-gocode'
+
 call vundle#end()
+
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+if exists("g:did_load_filetypes")
+  filetype off
+  filetype plugin indent off
+endif
+
+set runtimepath+=/usr/local/misc/vim
+filetype plugin indent on
 
 colorscheme molokai
 
@@ -101,3 +112,6 @@ map <leader>tn :tabnext<cr>
 map <leader>tb :tabprev<cr>
 map <leader>tc :tabclose<cr>
 syntax on
+
+filetype plugin on
+
