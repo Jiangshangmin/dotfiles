@@ -1,0 +1,19 @@
+'global':
+  'editor':
+    'showIndentGuide': true
+    'tabLength': 4
+    'invisibles': {}
+  'exception-reporting':
+    'userId': '9f4b61f9-5ac3-9434-ad02-4514e8d14173'
+  'welcome':
+    'showOnStartup': false
+  'core':
+    'disabledPackages': [
+      'metrics'
+    ]
+'.gohtml.html.text':
+  'editor': {}
+'.go.source':
+  'editor': {}
+'.gotemplate.source':
+  'editor': {}
