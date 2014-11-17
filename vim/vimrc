@@ -91,7 +91,7 @@ endif
 set runtimepath+=/usr/local/misc/vim
 filetype plugin indent on
 
-colorscheme molokai
+colorscheme solarized
 
 " Column 80 marker
 highlight OverLength ctermbg=red ctermfg=white guibg=#660000
