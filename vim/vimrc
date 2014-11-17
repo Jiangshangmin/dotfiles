@@ -1,128 +1,103 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
-
-filetype off
-call pathogen#infect()
-filetype plugin indent on
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+" Store as ~/.vimrc (Unix) or ~/_vimrc (Windows)
 set nocompatible
+filetype off
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" Indentation
+set smartindent
 
-"if has("vms")
-"  set nobackup		" do not keep a backup file, use versions instead
-"else
-"  set backup		" keep a backup file
-"endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set showmatch		" show matches
+" Use OS clipboard for copypasta
+set clipboard=unnamed
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
+" Enable OS mouse clicking and scrolling
+"
+" Note for Mac OS X: Requires SIMBL and MouseTerm
+"
+" http://www.culater.net/software/SIMBL/SIMBL.php
+" https://bitheap.org/mouseterm/
+if has("mouse")
+   set mouse=a
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+" Bash-style tab completion
+set wildmode=longest,list
+set wildmenu
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+" No swap files, use version control instead
+set noswapfile
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+" Fix bad autoindent of pasted text
+set paste
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+" Show line numbers
+" set number
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+" Default to soft tabs, 2 spaces
+set expandtab
+set sw=4
+set sts=4
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+" Default to Unix LF line endings
+set ffs=unix
 
-  augroup END
+" Folding
+" set foldmethod=syntax
+" set foldcolumn=1
+" set foldlevelstart=20
 
-else
+let g:vim_markdown_folding_disabled=1 " Markdown
+let javaScript_fold=1                 " JavaScript
+let perl_fold=1                       " Perl
+let php_folding=1                     " PHP
+let r_syntax_folding=1                " R
+let ruby_fold=1                       " Ruby
+let sh_fold_enabled=1                 " sh
+let vimsyn_folding='af'               " Vim script
+let xml_syntax_folding=1              " XML
 
-  set autoindent		" always set autoindenting on
+"
+" Vundle
+" https://github.com/gmarik/vundle
+"
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-endif " has("autocmd")
+Plugin 'gmarik/Vundle.vim'
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
+Plugin 'gmarik/vundle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'benjaminwhite/Benokai'
+" Plugin 'fsouza/go.vim'
+Plugin 'fatih/vim-go'
+Plugin 'fatih/molokai'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'wting/rust.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mtth/scratch.vim'
+Plugin 'greplace.vim'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
+call vundle#end()
 
-" Color scheme {{{
-
-syntax on
-set background=dark
 colorscheme molokai
 
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" Column 80 marker
+highlight OverLength ctermbg=red ctermfg=white guibg=#660000
+match OverLength /\%81v.\+/
 
-" }}}
-
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" Scratch splits the current window in half
+let g:scratch_height = 0.50
+" Scratch opens in Markdown format
+let g:scratch_filetype = 'markdown'
 
 vmap > >gv
 vmap < <gv
-imap jj <Esc> 
+imap jj <Esc>
 
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
 map <leader>tn :tabnext<cr>
 map <leader>tb :tabprev<cr>
 map <leader>tc :tabclose<cr>
+syntax on
