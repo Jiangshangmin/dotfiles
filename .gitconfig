@@ -1,6 +1,8 @@
 [user]
 	name = Tan Quach
-	email = tan.quach@gmail.com
+	email = tquach@simplereach.com
+[alias]
+        ci = commit -s
 [push]
 	default = simple
 [core]

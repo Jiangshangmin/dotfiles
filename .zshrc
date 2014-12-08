@@ -46,7 +46,9 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew)
+plugins=(git brew docker tmux vagrant ssh-agent emacs docker go gnu-utils gpg-agent)
+
+ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,18 +63,16 @@ export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/scala/
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_u20`
-export MAVEN_HOME=/usr/local/maven
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_u20`
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 export GOROOT=/usr/local/go
-export GOPATH=/Users/tanquach/projects/go
-# export GOPATH=/Volumes/Silvertooth/go
-export PATH=$PATH:$GOPATH/bin:$MAVEN_HOME/bin
+export GOPATH=/Users/tquach/projects/go
+export PATH=$GOROOT/bin:$PATH:$GOPATH/bin:$MAVEN_HOME/bin
 
 # Scala
 export SCALA_HOME=/usr/local/scala
@@ -82,24 +82,20 @@ export PATH=$PATH:$SCALA_HOME/bin
 export NSQ_HOME=/usr/local/nsq
 export PATH=$PATH:$NSQ_HOME/bin
 
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/projects
-# source /usr/local/bin/virtualenvwrapper.sh
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export ORGNAME=crowdsurge
-export OPSCODE_USER=tanquach
-export EMAIL_ADDRESS=tan.quach@crowdsurge.com
-# export AWS_ACCESS_KEY_ID=< your aws access key id>
-# # export AWS_SECRET_ACCESS_KEY=<your secret access key>
-export SSH_USER=tan
-export SSH_KEY=~/projects/chef-ops/.chef/tanquach.pem
-export GITHUB_API_KEY=9573f06aea24d61f0933326f8ec4453bebe77727
+if [ ! -f /tmp/.dockercache ]; then
+    boot2docker socket 2> /dev/null > /tmp/.dockercache
+fi
+eval $(cat /tmp/.dockercache)
+export DOCKER_IP=$(boot2docker ip 2> /dev/null)
 
-function sbuild {
-  SERVICE=${PWD##*/}
-  SERVICEPATH="${HOME}/Crowdsurge/sandbox_data/full/crowdsurge/${SERVICE}/${SERVICE}"
-  cp -R config "${SERVICEPATH}/config"
-  ( GOOS=linux GOARCH=amd64 go build  -o="${SERVICEPATH}/${SERVICE}" )
-}
-export -f sbuild
+# Python
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/projects
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+alias docker-rm="docker images | grep none | cut -c 47-59 | xargs docker rmi"
+alias docker-rmi='docker images --filter "dangling=true" -q | xargs docker rmi'
+alias docker-rme="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm"
