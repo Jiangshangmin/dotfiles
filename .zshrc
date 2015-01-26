@@ -1,16 +1,14 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="amuse"
+ZSH_THEME="cloud"
 
-# Example aliases
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
-alias work="cd ~/projects/ && vagrant up && vagrant ssh"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -43,47 +41,33 @@ DISABLE_AUTO_UPDATE="true"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew docker tmux vagrant ssh-agent emacs docker go gnu-utils gpg-agent)
+plugins=(git brew python docker vagrant go tmux compleat common-aliases)
 
+# Plugin configuration
 ZSH_TMUX_AUTOSTART=true
 
+# User configuration
+export PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$PATH
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/scala/bin:/Library/PostgreSQL/9.3/share/postgresql/bin
-# export MANPATH="/usr/local/man:$MANPATH"
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch x86_64"
 
-# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
-# export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_u20`
+# Java
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_u25`
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# Go
 export GOROOT=/usr/local/go
 export GOPATH=/Users/tquach/projects/go
-export PATH=$GOROOT/bin:$PATH:$GOPATH/bin:$MAVEN_HOME/bin
+export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
 
-# Scala
-export SCALA_HOME=/usr/local/scala
-export PATH=$PATH:$SCALA_HOME/bin
-
-# NSQ
-export NSQ_HOME=/usr/local/nsq
-export PATH=$PATH:$NSQ_HOME/bin
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
+# Docker
 if [ ! -f /tmp/.dockercache ]; then
     boot2docker socket 2> /dev/null > /tmp/.dockercache
 fi
@@ -95,7 +79,18 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/projects
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper_lazy.sh
+source /usr/local/opt/autoenv/activate.sh
 
+# Aliases
 alias docker-rm="docker images | grep none | cut -c 47-59 | xargs docker rmi"
 alias docker-rmi='docker images --filter "dangling=true" -q | xargs docker rmi'
-alias docker-rme="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm"
+alias docker-rme="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm -f"
+alias dock='docker'
+
+# SSH with tmux
+function ssht {
+  case "$2" in
+    "") autossh -M 0 $1 -t "if tmux -qu has; then tmux -qu attach; else EDITOR=vim tmux -qu new; fi";;
+    *) autossh -M 0 $1 -t "if tmux -qu has -t $2; then tmux -qu attach -t $2; else EDITOR=vim tmux -qu new -s $2; fi";;
+  esac
+}
