@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh configuration.
+export EDITOR=vi
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -47,7 +48,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew python docker vagrant go tmux compleat common-aliases)
+plugins=(git brew python docker vagrant go tmux compleat common-aliases pylint tmuxinator)
 
 # Plugin configuration
 ZSH_TMUX_AUTOSTART=true
@@ -68,11 +69,8 @@ export GOPATH=/Users/tquach/projects/go
 export PATH=$GOROOT/bin:$PATH:$GOPATH/bin
 
 # Docker
-if [ ! -f /tmp/.dockercache ]; then
-    boot2docker socket 2> /dev/null > /tmp/.dockercache
-fi
-eval $(cat /tmp/.dockercache)
 export DOCKER_IP=$(boot2docker ip 2> /dev/null)
+$(boot2docker shellinit 2> /dev/null)
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
@@ -85,7 +83,8 @@ source /usr/local/opt/autoenv/activate.sh
 alias docker-rm="docker images | grep none | cut -c 47-59 | xargs docker rmi"
 alias docker-rmi='docker images --filter "dangling=true" -q | xargs docker rmi'
 alias docker-rme="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm -f"
-alias dock='docker'
+alias docker-start='docker ps -a -f "status=exited" -q | xargs docker start'
+alias zource='source ~/.zshrc'
 
 # SSH with tmux
 function ssht {
@@ -94,3 +93,11 @@ function ssht {
     *) autossh -M 0 $1 -t "if tmux -qu has -t $2; then tmux -qu attach -t $2; else EDITOR=vim tmux -qu new -s $2; fi";;
   esac
 }
+
+# added by travis gem
+[ -f /Users/tquach/.travis/travis.sh ] && source /Users/tquach/.travis/travis.sh
+
+export APP_ENV=development
+export APP_NODE_ID=tquach.local
+
+unalias rm
