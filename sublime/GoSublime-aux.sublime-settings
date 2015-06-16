@@ -1,0 +1,188 @@
+{
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/gocode/collection/boards-service":
+	[
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/gocode/collection/edge_server":
+	[
+		"go fmt",
+		"golint",
+		"go vet"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform":
+	[
+		"go build ./..."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services":
+	[
+		"go build ./..."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services/common":
+	[
+		"cd .."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services/common/middleware":
+	[
+		"go install",
+		"cd .."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services/service-layer/api-router":
+	[
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services/service-layer/crud":
+	[
+		"go install"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services/service-layer/mongo-crud-service":
+	[
+		"go install ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform-services/service-layer/users-service":
+	[
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/auth-service/auth":
+	[
+		"go install",
+		"go get ./...",
+		"go env",
+		"go lint .",
+		"golint .",
+		"go lint",
+		"golint"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/common/mongo/crud":
+	[
+		"go test -tags=integration -run=none",
+		"go test -tags=integration -run=TestIntegration*",
+		"go test -tags=integration -run=TestIntegration* -mongo-host docker1"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/common/test":
+	[
+		"go install .",
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/config":
+	[
+		"go test .",
+		"golint .",
+		"go test -tags=integration",
+		"go test -tags=integration .",
+		"go build .",
+		"github.com/simplereach/platform/config",
+		"go test -test.run=\"TestLocalData*\"",
+		"cd .."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/logging":
+	[
+		"go github.com/op/go-logging"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service":
+	[
+		"go build .",
+		"go install .",
+		"go get github.com/gorilla/handlers",
+		"go get github.com/cihub/seelog"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/api-router":
+	[
+		"go build"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/api-router/apirouter":
+	[
+		"gopkg.in/check.v1",
+		"go get gopkg.in/check.v1",
+		"go get ./...",
+		"go build",
+		"gofmt",
+		"gofmt -s -l .",
+		"gofmt -s -l -w .",
+		"goimports .",
+		"goimports -w ./...",
+		"goimports -w .",
+		"which goimports"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/api-router/proxy":
+	[
+		"go build"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/api-router/router":
+	[
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/boards-service":
+	[
+		"go build && ./boards-service",
+		"./boards-service",
+		"go build"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/boards-service/boards":
+	[
+		"go build .",
+		"go install ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/boards-service/storage":
+	[
+		"go build",
+		"go build .",
+		"go test ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/boards-service/workers":
+	[
+		"go install ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/config-service":
+	[
+		"./config-service --config-hosts=docker1",
+		"go build",
+		"./config-service --bootstrap",
+		"APP_ENV=development go run main.go",
+		"APP_ENV=\"development\" go run main.go",
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/events-service":
+	[
+		"go get github.com/AdRoll/goamz/aws",
+		"go get github.com/creack/go-dogstatsd"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/registry":
+	[
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/service":
+	[
+		"go install",
+		"go build"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service-layer/service-template":
+	[
+		"go run main.go",
+		"go build"
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/service/healthchecks":
+	[
+		"go build .",
+		"go install ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/simplereach/platform/util":
+	[
+		"go build ."
+	],
+	"9o.hist./Users/tquach/projects/go/src/github.com/tquach/zk-rest-api":
+	[
+		"go build"
+	],
+	"9o.hist./Users/tquach/projects/platform/service-layer/boards-service":
+	[
+		"go build ./..."
+	],
+	"9o.hist./Users/tquach/projects/platform/service-layer/boards-service/storage":
+	[
+		"go build .",
+		"cd .."
+	],
+	"ann": "a14.02.25-1",
+	"install_version": "r14.12.06-1",
+	"version": "r14.12.06-1"
+}

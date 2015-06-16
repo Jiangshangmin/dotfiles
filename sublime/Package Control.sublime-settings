@@ -1,0 +1,48 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AutoPEP8",
+		"Color Scheme - Nice Blue Soda",
+		"ColorSchemeSelector",
+		"Devastate",
+		"Git",
+		"GoOracle",
+		"GoSublime",
+		"Javascript Beautify",
+		"Markdown Extended",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"MarkdownLight",
+		"Package Control",
+		"Predawn",
+		"Predawn Monokai",
+		"Pretty JSON",
+		"Python PEP8 Autoformat",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-annotations",
+		"SublimeLinter-contrib-golint",
+		"SublimeLinter-contrib-gotype",
+		"SublimeLinter-contrib-govet",
+		"SublimeLinter-pep8",
+		"Theme - Afterglow",
+		"Theme - Asphalt",
+		"Theme - Brogrammer",
+		"Theme - Coffee",
+		"Theme - Cyanide",
+		"Theme - Glacier",
+		"Theme - itg.flat",
+		"Theme - Numix",
+		"Theme - Orchis",
+		"Theme - Piatto",
+		"Theme - Soda",
+		"Theme - Soda SolarizedDark",
+		"Theme - Spacegray",
+		"Theme - Tech49",
+		"Theme - Watson"
+	]
+}

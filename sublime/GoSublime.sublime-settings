@@ -1,0 +1,31 @@
+{
+  "env": { "GOPATH": "/Users/tquach/projects/go"},
+  "fmt_cmd": ["goimports"],
+  "gslint_enabled": true,
+  "gs.on-change.go": {
+    "input": true,
+    "cmd": "gs.syntax-check"
+  },
+  "gs.on-save.go": ["all",
+    ["go", "vet"],
+    ["go", "install-tmp"]
+  ],
+  "comp_lint_enabled": true,
+  "comp_lint_commands": [
+    {"cmd": ["go", "install"]}
+  ],
+  "use_named_imports": true,
+  "snippets": [
+    {
+      "match": {"global": true},
+      "snippets": [
+        {
+          "text": "testfunc",
+          "title": "func Test(t *testing.T) {...}",
+          "value": "func Test${1:name}(t *testing.T) {\n\t$0\n}"
+        }
+      ]
+    },
+
+  ],
+}
